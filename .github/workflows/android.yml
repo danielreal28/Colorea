@@ -11,46 +11,38 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    # 1. CONFIGURAR JAVA 17 (REQUISITO DE GRADLE)
+    # 1. CONFIGURAR JAVA 17
     - name: set up JDK 17
       uses: actions/setup-java@v3
       with:
         java-version: '17'
         distribution: 'temurin'
 
-    # 2. ACEPTAR LICENCIAS DE ANDROID PARA EVITAR ERRORES DE COMPILACIÓN
-    - name: Accept Android Licenses
-      run: |
-        yes | sfdx sdkmanager --licenses || echo "Licencias procesadas"
-
-    # 3. INSTALAR CORDOVA GLOBALMENTE
+    # 2. INSTALAR CORDOVA
     - name: Install Cordova
       run: npm install -g cordova
 
-    # 4. CREAR EL PROYECTO Y COMPILAR EL APK
+    # 3. CREAR EL PROYECTO Y COMPILAR EL APK
     - name: Create Cordova Project & Build APK
       run: |
         cordova create app com.daniel.juegoavatar "Juego Avatar"
         cd app
         rm -rf www/*
         
-        # El robot localiza la carpeta donde guardaste tu index.html
+        # Localizar archivos del juego
         TARGET_DIR=$(find .. -maxdepth 3 -name "index.html" -exec dirname {} \;)
         echo "El robot encontró tus archivos en: $TARGET_DIR"
         
-        # Copia todos los recursos al directorio de compilación
         cp -r "$TARGET_DIR/index.html" "$TARGET_DIR/style.css" "$TARGET_DIR/script.js" "$TARGET_DIR/assets" ./www/
         
-        # Si agregaste el config.xml, lo usa para los nombres e iconos
         if [ -f "$TARGET_DIR/config.xml" ]; then cp "$TARGET_DIR/config.xml" ./config.xml; fi
         
-        # Construcción de la plataforma Android
         cordova platform add android
         cordova build android --release
 
-    # 5. SUBIR EL ARCHIVO APK GENERADO A GITHUB
+    # 4. SUBIR EL ARCHIVO APK USANDO BÚSQUEDA AUTOMÁTICA
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: juego-avatar-apk
-        path: app/platforms/android/app/build/outputs/apk/release/*.apk
+        path: app/**/*.apk
