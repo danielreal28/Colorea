@@ -2,33 +2,44 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego Avatar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Cute Anime Avatar Maker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="contenedor-movil">
+        <!-- PANTALLA DEL AVATAR (Capas superpuestas) -->
         <div class="pantalla-avatar">
-            <img id="capa-cuerpo" src="assets/cuerpo.svg" alt="Cuerpo Base">
-            <img id="capa-cabello" src="assets/pelo1.svg" alt="Cabello" style="display: none;">
-            <img id="capa-ropa" src="assets/ropa1.svg" alt="Ropa" style="display: none;">
+            <img id="capa-fondo" src="assets/fondo1.png" class="capa-canvas">
+            <img id="capa-pelo-atras" src="assets/pelo1_atras.png" class="capa-canvas">
+            <img id="capa-cuerpo" src="assets/cuerpo_base.png" class="capa-canvas">
+            <img id="capa-rostro" src="assets/rostro1.png" class="capa-canvas">
+            <img id="capa-ropa" src="assets/ropa1.png" class="capa-canvas">
+            <img id="capa-pelo-alante" src="assets/pelo1_alante.png" class="capa-canvas">
         </div>
 
+        <!-- PANEL DE CONTROL PREMIUM -->
         <div class="panel-control">
+            
+            <!-- Barra de Color (Filtro para el cabello) -->
             <div class="control-color">
-                <label for="color-pelo">🎨 Color de Pelo:</label>
+                <span>🎨 Color de Pelo:</span>
                 <input type="range" id="color-pelo" min="0" max="360" value="0">
             </div>
 
-            <div class="pestanas">
-                <button id="tab-cabello" class="btn-tab active">👩‍🦰 Cabello</button>
+            <!-- Menú de Categorías (Pestañas) -->
+            <div class="pestanas-menu">
+                <button id="tab-rostro" class="btn-tab active">👀 Rostro</button>
+                <button id="tab-cabello" class="btn-tab">💇‍♀️ Pelo</button>
                 <button id="tab-ropa" class="btn-tab">👗 Ropa</button>
             </div>
 
-            <div id="contenedor-opciones" class="cuadricula-opciones"></div>
+            <!-- El Armario (Se llena automáticamente con los cuadritos) -->
+            <div id="armario-opciones" class="cuadricula-armario"></div>
 
-            <button id="btn-guardar" class="btn-principal">Guardar Muñequita ✨</button>
+            <!-- Botón de Guardar -->
+            <button id="btn-guardar" class="btn-guardar-avatar">Guardar Avatar ✨</button>
         </div>
     </div>
 
