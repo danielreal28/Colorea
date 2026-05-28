@@ -3,68 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avatar Maker - Juego de Vestir</title>
+    <title>Juego Avatar</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Librería para guardar la imagen del avatar en el celular -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
-    <div class="phone-container">
-        
-        <!-- PANTALLA DEL AVATAR (PROBADOR DE CAPAS) -->
-        <div class="canvas-section" id="avatar-preview">
-            <!-- Capa Base: Cuerpo de la muñequita -->
-            <img src="assets/cuerpo.png" class="layer base-body" alt="Cuerpo Base">
-            <!-- Capas superiores dinámicas -->
-            <img src="" class="layer" id="layer-clothes" alt="">
-            <img src="" class="layer" id="layer-hair" alt="">
+    <div class="contenedor-movil">
+        <div class="pantalla-avatar">
+            <img id="capa-cuerpo" src="assets/cuerpo.svg" alt="Cuerpo Base">
+            <img id="capa-cabello" src="assets/pelo1.svg" alt="Cabello" style="display: none;">
+            <img id="capa-ropa" src="assets/ropa1.svg" alt="Ropa" style="display: none;">
         </div>
 
-        <!-- CONTROLES DE COLOR (Deslizador dinámico para el pelo) -->
-        <div class="color-picker-container">
-            <label for="hair-color">🎨 Color de Pelo:</label>
-            <input type="range" id="hair-color" min="0" max="360" value="0">
+        <div class="panel-control">
+            <div class="control-color">
+                <label for="color-pelo">🎨 Color de Pelo:</label>
+                <input type="range" id="color-pelo" min="0" max="360" value="0">
+            </div>
+
+            <div class="pestanas">
+                <button id="tab-cabello" class="btn-tab active">👩‍🦰 Cabello</button>
+                <button id="tab-ropa" class="btn-tab">👗 Ropa</button>
+            </div>
+
+            <div id="contenedor-opciones" class="cuadricula-opciones"></div>
+
+            <button id="btn-guardar" class="btn-principal">Guardar Muñequita ✨</button>
         </div>
-
-        <!-- PANEL DE SELECCIÓN (EL ARMARIO GLASSMORPHISM) -->
-        <div class="wardrobe-panel">
-            <!-- Pestañas de Navegación -->
-            <div class="tabs">
-                <button class="tab-btn active" onclick="switchTab('pelo')">💇‍♀️ Cabello</button>
-                <button class="tab-btn" onclick="switchTab('ropa')">👗 Ropa</button>
-            </div>
-
-            <!-- Contenedor de Opciones: Cabello -->
-            <div id="panel-pelo" class="options-container active-panel">
-                <div class="option-item" onclick="changeItem('layer-hair', 'assets/pelo1.png')">
-                    <img src="assets/pelo1.png" alt="Estilo Pelo 1">
-                </div>
-                <div class="option-item" onclick="changeItem('layer-hair', 'assets/pelo2.png')">
-                    <img src="assets/pelo2.png" alt="Estilo Pelo 2">
-                </div>
-                <div class="option-item" onclick="changeItem('layer-hair', 'assets/pelo3.png')">
-                    <img src="assets/pelo3.png" alt="Estilo Pelo 3">
-                </div>
-            </div>
-
-            <!-- Contenedor de Opciones: Ropa -->
-            <div id="panel-ropa" class="options-container">
-                <div class="option-item" onclick="changeItem('layer-clothes', 'assets/ropa1.png')">
-                    <img src="assets/ropa1.png" alt="Vestimenta 1">
-                </div>
-                <div class="option-item" onclick="changeItem('layer-clothes', 'assets/ropa2.png')">
-                    <img src="assets/ropa2.png" alt="Vestimenta 2">
-                </div>
-                <div class="option-item" onclick="changeItem('layer-clothes', 'assets/ropa3.png')">
-                    <img src="assets/ropa3.png" alt="Vestimenta 3">
-                </div>
-            </div>
-        </div>
-
-        <!-- BOTÓN DE ACCIÓN PRINCIPAL -->
-        <button class="save-btn" onclick="saveAvatar()">Guardar Muñequita ✨</button>
-
     </div>
 
     <script src="script.js"></script>
