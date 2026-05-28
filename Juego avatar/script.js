@@ -1,17 +1,17 @@
 // Mapeo de las caritas disponibles en la hoja de Leonardo
 const itemsJuego = {
     rostro: [
-        { claseCss: 'carita-1', imagenGrande: 'assets/avatar_sheet.jpg', posX: '0%', posY: '0%' },
-        { claseCss: 'carita-2', imagenGrande: 'assets/avatar_sheet.jpg', posX: '10%', posY: '0%' },
-        { claseCss: 'carita-3', imagenGrande: 'assets/avatar_sheet.jpg', posX: '20%', posY: '0%' },
-        { claseCss: 'carita-4', imagenGrande: 'assets/avatar_sheet.jpg', posX: '30%', posY: '0%' }
+        { claseCss: 'carita-1', imagenGrande: './assets/avatar_sheet.jpg', posX: '0%', posY: '0%' },
+        { claseCss: 'carita-2', imagenGrande: './assets/avatar_sheet.jpg', posX: '10%', posY: '0%' },
+        { claseCss: 'carita-3', imagenGrande: './assets/avatar_sheet.jpg', posX: '20%', posY: '0%' },
+        { claseCss: 'carita-4', imagenGrande: './assets/avatar_sheet.jpg', posX: '30%', posY: '0%' }
     ],
     cabello: [
-        { claseCss: 'carita-5', imagenGrande: 'assets/avatar_sheet.jpg', posX: '0%', posY: '70%' },
-        { claseCss: 'carita-6', imagenGrande: 'assets/avatar_sheet.jpg', posX: '10%', posY: '70%' }
+        { claseCss: 'carita-5', imagenGrande: './assets/avatar_sheet.jpg', posX: '0%', posY: '77.7%' },
+        { claseCss: 'carita-6', imagenGrande: './assets/avatar_sheet.jpg', posX: '10%', posY: '77.7%' }
     ],
     ropa: [
-        { claseCss: 'carita-7', imagenGrande: 'assets/avatar_sheet.jpg', posX: '50%', posY: '80%' }
+        { claseCss: 'carita-7', imagenGrande: './assets/avatar_sheet.jpg', posX: '40%', posY: '88.8%' }
     ]
 };
 
@@ -56,8 +56,8 @@ Object.keys(tabs).forEach(cat => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Configurar la vista previa inicial con la hoja completa
-    imgCuerpo.src = 'assets/avatar_sheet.jpg';
+    // Configurar la vista previa inicial con la hoja completa sin fallos de ruta 404
+    imgCuerpo.src = './assets/avatar_sheet.jpg';
     imgCuerpo.style.objectFit = 'none';
     imgCuerpo.style.objectPosition = '0% 0%';
     imgCuerpo.style.transform = 'scale(2.5)';
