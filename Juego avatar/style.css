@@ -1,4 +1,6 @@
-/* Estilos Base Centrados para Móvil */
+/* ==========================================
+   ESTILOS BASE CENTRALIZADOS (MÓVIL FIRST)
+   ========================================== */
 * {
     margin: 0;
     padding: 0;
@@ -39,14 +41,16 @@ body {
     gap: 15px;
 }
 
-/* Pantalla del Avatar (Contenedor con máscara) */
+/* ==========================================
+   PANTALLA PRINCIPAL DEL AVATAR (VISOR)
+   ========================================== */
 .pantalla-avatar {
     width: 100%;
     height: 340px;
     background: #ffffff;
     border-radius: 22px;
     position: relative;
-    overflow: hidden; /* Esto evita que la hoja gigante se salga del cuadro */
+    overflow: hidden; /* Oculta el exceso de la hoja gigante de sprites */
     box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
     display: flex;
     justify-content: center;
@@ -63,14 +67,16 @@ body {
     position: relative;
 }
 
-/* Imagen base con la hoja de Leonardo */
+/* Imagen de Leonardo dentro del visor */
 #capa-cuerpo {
-    object-fit: none; /* Crucial para poder mover la imagen con coordenadas */
-    transition: all 0.25s ease-out; /* Animación suave al cambiar de avatar */
+    object-fit: none; /* Crucial para recortar mediante coordenadas de imagen */
+    transition: all 0.25s ease-out; /* Movimiento fluido al elegir avatar */
     position: absolute;
 }
 
-/* Panel de Control Transparente */
+/* ==========================================
+   PANEL DE INTERFAZ Y CONTROLES
+   ========================================== */
 .panel-control {
     display: flex;
     flex-direction: column;
@@ -96,7 +102,7 @@ body {
     accent-color: #ff477e;
 }
 
-/* Pestañas de las Categorías */
+/* Pestañas de Navegación */
 .pestanas-menu {
     display: flex;
     gap: 8px;
@@ -122,7 +128,9 @@ body {
     border-color: transparent;
 }
 
-/* El Armario / Cuadrícula de Opciones */
+/* ==========================================
+   CUADRÍCULA DEL ARMARIO (SPRITE MAPPING)
+   ========================================== */
 .cuadricula-armario {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -131,17 +139,16 @@ body {
     padding: 12px;
     border-radius: 20px;
     height: 140px;
-    overflow-y: auto; /* Permite hacer scroll si pones muchas caritas */
+    overflow-y: auto;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* EL TRUCO: Cuadritos del armario usando recortes CSS */
+/* Cuadritos individuales mapeados desde './assets/avatar_sheet.jpg' */
 .cuadrito-item {
-    background-image: url('assets/avatar_sheet.jpg');
-    /* Ajusta el tamaño de fondo considerando que hay unas 11 columnas y 10 filas */
-    background-size: 1100% 1000%; 
+    background-image: url('./assets/avatar_sheet.jpg'); /* Solución al error 404 */
+    background-size: 1100% 1000%; /* Ajuste proporcional a filas y columnas */
     background-repeat: no-repeat;
-    aspect-ratio: 1 / 1; /* Forzar a que sean cuadrados perfectos */
+    aspect-ratio: 1 / 1;
     border-radius: 14px;
     background-color: #ffffff;
     cursor: pointer;
@@ -154,7 +161,7 @@ body {
     transform: scale(0.93);
 }
 
-/* MAPEO INDIVIDUAL DE COORDENADAS (Se aplican desde el script.js) */
+/* COORDENADAS EXACTAS PARA ENFOCAR CADA CARITA */
 .carita-1 { background-position: 0% 0%; }
 .carita-2 { background-position: 10% 0%; }
 .carita-3 { background-position: 20% 0%; }
@@ -165,7 +172,9 @@ body {
 
 .carita-7 { background-position: 40% 88.8%; }
 
-/* Botón Principal de Guardar */
+/* ==========================================
+   BOTÓN ACCIÓN PRINCIPAL
+   ========================================== */
 .btn-guardar-avatar {
     width: 100%;
     padding: 14px;
