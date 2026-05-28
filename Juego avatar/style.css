@@ -1,201 +1,154 @@
-/* RESET DE ESTILOS BASE */
+/* Estilos Base Centrados para Móvil */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    user-select: none; /* Evita que el usuario seleccione texto por error al jugar */
-    -webkit-user-select: none;
 }
 
-/* FONDO GENERAL DE LA PANTALLA */
 body {
     background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    min-height: 100vh;
+    padding: 10px;
 }
 
-/* CONTENEDOR TIPO MÓVIL (CENTRADITO PARA APK) */
-.phone-container {
+.contenedor-movil {
     width: 100%;
     max-width: 400px;
-    height: 95vh;
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 30px;
-    box-shadow: 0 8px 32px rgba(255, 133, 161, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 8px 32px rgba(255, 182, 193, 0.3);
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    padding: 15px;
-    gap: 10px;
+    gap: 15px;
 }
 
-/* ÁREA DEL AVATAR (EL PROBADOR DE CAPAS) */
-.canvas-section {
-    flex: 1;
-    position: relative;
+/* Pantalla del Avatar */
+.pantalla-avatar {
+    width: 100%;
+    height: 320px;
     background: #ffffff;
     border-radius: 20px;
+    position: relative;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
 }
 
-/* CAPAS ENCIMADAS PERFECTAMENTE */
-.layer {
+.pantalla-avatar img {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Mantiene la proporción de la muñequita */
-    transition: all 0.2s ease;
-    pointer-events: none; /* Hace que las imágenes no estorben al dar clics */
+    object-fit: contain;
 }
 
-/* Control del orden visual de las prendas */
-.base-body { z-index: 1; }
-#layer-clothes { z-index: 2; }
-#layer-hair { z-index: 3; }
+/* Panel Transparente */
+.panel-control {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
 
-/* CONTROLES DE COLOR DINÁMICO (SLIDER) */
-.color-picker-container {
+.control-color {
     display: flex;
     align-items: center;
-    gap: 12px;
-    background: rgba(255, 255, 255, 0.4);
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.6);
     padding: 10px 15px;
     border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.color-picker-container label {
     font-size: 14px;
     font-weight: bold;
     color: #4a4a4a;
 }
 
-.color-picker-container input[type="range"] {
-    flex: 1;
-    height: 6px;
-    border-radius: 5px;
-    background: linear-gradient(to right, red, yellow, green, cyan, blue, magenta, red);
-    appearance: none;
-    -webkit-appearance: none;
+#color-pelo {
+    width: 60%;
     cursor: pointer;
 }
 
-/* EL ARMARIO (PANEL GLASSMORPHISM) */
-.wardrobe-panel {
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 22px;
-    padding: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-/* PESTAÑAS DE NAVEGACIÓN */
-.tabs {
+/* Pestañas */
+.pestanas {
     display: flex;
     gap: 10px;
-    margin-bottom: 12px;
 }
 
-.tab-btn {
+.btn-tab {
     flex: 1;
-    padding: 10px;
+    padding: 12px;
     border: none;
     background: rgba(255, 255, 255, 0.6);
-    border-radius: 12px;
-    cursor: pointer;
+    border-radius: 15px;
     font-weight: bold;
-    font-size: 14px;
-    color: #555;
-    transition: all 0.3s ease;
+    color: #4a4a4a;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.tab-btn.active {
-    background: #ff85a1;
+.btn-tab.active {
+    background: #ff477e;
     color: white;
-    box-shadow: 0 4px 10px rgba(255, 133, 161, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 71, 126, 0.3);
 }
 
-/* CONTENEDOR CON SCROLL HORIZONTAL PARA LAS PRENDAS */
-.options-container {
-    display: none;
-    gap: 12px;
-    overflow-x: auto;
-    padding: 5px 2px 10px 2px;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch; /* Hace que el scroll sea fluido en celulares */
+/* Armario y Cuadritos */
+.cuadricula-opciones {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 15px;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 15px;
+    border-radius: 20px;
+    min-height: 120px;
 }
 
-/* Muestra solo el panel que está activo */
-.options-container.active-panel {
-    display: flex;
-}
-
-/* CAJITAS INDIVIDUALES DE PRENDAS */
-.option-item {
-    min-width: 75px;
-    max-width: 75px;
-    height: 75px;
-    background: #ffffff;
+.cuadrito-armario {
+    width: 90px;
+    height: 90px;
+    background: white;
     border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
     border: 2px solid transparent;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-.option-item:active {
-    transform: scale(0.92); /* Efecto táctil al presionarlo */
+.cuadrito-armario:active {
+    transform: scale(0.95);
 }
 
-/* Las imágenes miniatura dentro de cada cajita */
-.option-item img {
-    width: 85%;
-    height: 85%;
+.cuadrito-armario img {
+    width: 80%;
+    height: 80%;
     object-fit: contain;
 }
 
-/* DISEÑO DE LA BARRA DE SCROLL (PARA QUE SE VEA DELGADA Y COQUETA) */
-.options-container::-webkit-scrollbar {
-    height: 5px;
-}
-
-.options-container::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 10px;
-}
-
-.options-container::-webkit-scrollbar-thumb {
-    background: rgba(255, 133, 161, 0.5);
-    border-radius: 10px;
-}
-
-/* BOTÓN GUARDAR MUÑEQUITA */
-.save-btn {
+/* Botón Principal */
+.btn-principal {
+    width: 100%;
+    padding: 15px;
+    border: none;
     background: #ff477e;
     color: white;
-    border: none;
-    padding: 14px;
-    border-radius: 18px;
     font-size: 16px;
     font-weight: bold;
+    border-radius: 20px;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(255, 71, 126, 0.3);
-    transition: background 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 6px 20px rgba(255, 71, 126, 0.4);
+    transition: 0.2s;
 }
 
-.save-btn:active {
+.btn-principal:active {
     transform: scale(0.98);
 }
