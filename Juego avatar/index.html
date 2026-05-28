@@ -9,33 +9,30 @@
 <body>
 
     <div class="contenedor-movil">
-        <!-- PANTALLA DEL AVATAR (Capas superpuestas) -->
+        <!-- PANTALLA DEL AVATAR (Muestra el zoom del avatar seleccionado) -->
         <div class="pantalla-avatar">
-            <img id="capa-fondo" src="assets/fondo1.png" class="capa-canvas">
-            <img id="capa-pelo-atras" src="assets/pelo1_atras.png" class="capa-canvas">
-            <img id="capa-cuerpo" src="assets/cuerpo_base.png" class="capa-canvas">
-            <img id="capa-rostro" src="assets/rostro1.png" class="capa-canvas">
-            <img id="capa-ropa" src="assets/ropa1.png" class="capa-canvas">
-            <img id="capa-pelo-alante" src="assets/pelo1_alante.png" class="capa-canvas">
+            <div class="enfoque-avatar">
+                <img id="capa-cuerpo" src="assets/avatar_sheet.jpg" alt="Avatar Seleccionado">
+            </div>
         </div>
 
-        <!-- PANEL DE CONTROL PREMIUM -->
+        <!-- PANEL DE CONTROL (Glassmorphism) -->
         <div class="panel-control">
             
-            <!-- Barra de Color (Filtro para el cabello) -->
+            <!-- Barra de Color (Filtro estético para personalizar el tono) -->
             <div class="control-color">
-                <span>🎨 Color de Pelo:</span>
+                <span>🎨 Tono del Personaje:</span>
                 <input type="range" id="color-pelo" min="0" max="360" value="0">
             </div>
 
-            <!-- Menú de Categorías (Pestañas) -->
+            <!-- Menú de Categorías (Pestañas para filtrar las caritas) -->
             <div class="pestanas-menu">
                 <button id="tab-rostro" class="btn-tab active">👀 Rostro</button>
                 <button id="tab-cabello" class="btn-tab">💇‍♀️ Pelo</button>
-                <button id="tab-ropa" class="btn-tab">👗 Ropa</button>
+                <button id="tab-ropa" class="btn-tab">👗 Especial</button>
             </div>
 
-            <!-- El Armario (Se llena automáticamente con los cuadritos) -->
+            <!-- El Armario (Aquí el script.js mete los cuadritos recortados automáticamente) -->
             <div id="armario-opciones" class="cuadricula-armario"></div>
 
             <!-- Botón de Guardar -->
