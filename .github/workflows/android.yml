@@ -25,8 +25,9 @@ jobs:
         cordova create app com.daniel.juegoavatar "Juego Avatar"
         cd app
         rm -rf www/*
-        cp -r ../index.html ../style.css ../script.js ../assets ./www/
-        if [ -f ../config.xml ]; then cp ../config.xml ./config.xml; fi
+        # Aquí el robot ya sabe que debe buscar dentro de la carpeta 'juego avatar'
+        cp -r "../juego avatar/index.html" "../juego avatar/style.css" "../juego avatar/script.js" "../juego avatar/assets" ./www/
+        if [ -f "../juego avatar/config.xml" ]; then cp "../juego avatar/config.xml" ./config.xml; fi
         cordova platform add android
         cordova build android --release
 
