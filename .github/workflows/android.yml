@@ -22,7 +22,7 @@ jobs:
     - name: Install Cordova
       run: npm install -g cordova
 
-    # 3. CREAR EL PROYECTO Y COMPILAR EL APK
+    # 3. CREAR EL PROYECTO Y COMPILAR EL APK (Modo estándar para asegurar el archivo)
     - name: Create Cordova Project & Build APK
       run: |
         cordova create app com.daniel.juegoavatar "Juego Avatar"
@@ -38,11 +38,12 @@ jobs:
         if [ -f "$TARGET_DIR/config.xml" ]; then cp "$TARGET_DIR/config.xml" ./config.xml; fi
         
         cordova platform add android
-        cordova build android --release
+        # Compilamos normal para asegurar que genere el archivo .apk instalable directo
+        cordova build android
 
-    # 4. SUBIR EL ARCHIVO APK USANDO BÚSQUEDA AUTOMÁTICA
+    # 4. SUBIR ABSOLUTAMENTE TODO LO QUE ENCUENTRE EN LAS CARPETAS DE SALIDA
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: juego-avatar-apk
-        path: app/**/*.apk
+        path: app/platforms/android/app/build/outputs/**
